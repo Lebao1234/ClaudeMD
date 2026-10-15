@@ -1,0 +1,140 @@
+# Audit design system (Giai đoạn 1, 15/10/2026)
+
+Phạm vi đọc:
+- `frontend-themes/` (CLAUDE.md, archive/*, .claude/settings.json), `skills-lock.json`, 13 taste skill.
+- 6 dự án đọc sâu: BBE-giaoduc, ISZ-giaoduc, Luimiere-dichvu, K-Lab's-dichvu, Langkinh-congnghe, VN-Nikko-cokhi.
+- Quét tự động 16/16 dự án trong `website/`, cộng 4 dự án dựng trong phiên gần nhất (MathE, Cocphache, PhuSong, Ánh Vàng).
+
+Không sửa file nào ngoài file này.
+
+## a) Phần lặp giữa các dự án
+
+| Hạng mục | Lặp ở đâu | Mức |
+|---|---|---|
+| Công thức hero: eyebrow → H1 có `<em>` → lead → nút chính có icon tròn ↗ → text-link → `dl` 3 số liệu | 6/6 dự án đọc sâu | Cao |
+| H2 dạng "cụm thường + `<em>cụm nhấn</em>`" ở mọi section | 6/6 + Ánh Vàng | Cao |
+| Header pill nổi, kính mờ `backdrop-filter: blur(14-18px)` | 6/6 | Cao |
+| Khung đôi `.bezel > .bezel-core`, cặp bo 28/22 hoặc 30/24, nút 999px | BBE, ISZ, K-Lab, Luimiere, Nikko | Cao |
+| Thứ tự section: hero → widget tương tác → danh mục/index → quy trình → testimonial → cơ sở → 3 bài viết → CTA band | 6/6 (sai khác nhỏ) | Cao |
+| `{{posts limit="3"}}` + `.post-grid repeat(3, 1fr)` | 6/6 | Cao |
+| Easing `cubic-bezier(.32,.72,0,1)` / `(.16,1,.3,1)`, `.reveal` trên gần mọi khối | 6/6 | Trung bình |
+| Bộ icon Phosphor 2.1.1 | 16/16 dự án (14 dùng nét light) | Cao |
+| Đúng 1 accent; accent đỏ | đỏ ở BBE, ISZ, K-Lab, Nikko, VN-Nikko, Nhatanthoi (6 site) | Cao |
+| Nền: trắng xen một tông xám nhạt; ít vùng đậm/màu nhấn | BBE, ISZ, K-Lab, Nikko | Trung bình |
+| Cả trang một tông tối | Luimiere, Langkinh | Trung bình |
+| Font bão hòa | Plus Jakarta Sans (3), Be Vietnam Pro (3), Archivo (3) | Trung bình |
+| `build.js`, `check.js`, `main.js`, README cùng khuôn | 14/16 | Chấp nhận được (stack chung) |
+
+## b) Lỗi kiểu AI trong code thật
+
+| Lỗi | Bằng chứng | Phạm vi |
+|---|---|---|
+| Emoji làm icon | Không có (chỉ ký tự © ở footer, lint phải bỏ qua ©®™) | 0 |
+| Số liệu bịa trông chính xác | ISZ `src/pages/index.html:13-14` "68.400+", "91,6%"; K-Lab `:61-62` "12.400+", "4,9/5"; BBE "8.600+", "214 học viên"; Luimiere "2.140+ tiệc", "34 đầu bếp" (không đánh dấu mẫu) | 5/6 |
+| Testimonial có tên, điểm cụ thể nhưng là dữ liệu mẫu | ISZ `src/data/reviews.js:1`, K-Lab `index.html:110-114`, Luimiere, BBE | 4/6 |
+| `href="#"` (mạng xã hội) | BBE 4, K-Lab 4, Langkinh 3, 3DRoom 3, Nhatanthoi 3, Phimdan 6 | 6/16 |
+| Cụm sáo rỗng | "đồng hành" (BBE, ISZ, Nikko), "Tận tâm" (BBE, Nikko), khối Tầm nhìn/Sứ mệnh/Giá trị cốt lõi (Nikko, PhuSong) | Thấp nhưng có |
+| Tiêu đề `<title>` mất dấu tiếng Việt | AttackK 13/13 trang ("Chuot, ban phim…"), BeatBeat 5 trang | 2/16 |
+| Glassmorphism mặc định | header của 6/6, thêm buybar/strip Langkinh | Cao |
+| Card 3 cột bằng nhau | BBE gói giá, Langkinh sản phẩm + câu chuyện, ISZ 5 lưới `repeat(3)` | 3/6 |
+| H1 khẩu hiệu chung chung | Langkinh "Nhìn thế giới qua lăng kính của riêng bạn" | 1/6 |
+| Gradient tím-xanh, lorem, ảnh thiếu alt | Không có | 0 |
+| Font thiếu subset tiếng Việt | Không có (css2 trả subset qua unicode-range; lint cần kiểm tra theo tên font, không theo tham số `subset`) | 0 |
+
+## c) Mâu thuẫn giữa luật cũ và taste skill
+
+**Archive theme cũ** (`frontend-themes/archive/*`) mâu thuẫn với `frontend-themes/CLAUDE.md` hiện tại:
+- Satoshi không có tiếng Việt; Plus Jakarta Sans bão hòa; Geist trùng Langkinh.
+- Hero mặc định 2 cột 50/50, 60/40, mesh gradient.
+- Eyebrow ở mọi section; chấm trạng thái nhấp nháy.
+- Bộ đếm số; accent `#6366F1` bão hòa 100%.
+- Glass card; ảnh "gen AI" trong khi repo không có công cụ tạo ảnh.
+
+**Taste skill mâu thuẫn nhau:**
+- v1 cấm Inter và cấm hero căn giữa; v2 cho phép có điều kiện.
+- gpt-taste bắt GSAP mọi nơi, chọn bố cục ngẫu nhiên, hero giữa 2 CTA; v2 nói "motion phải có lý do".
+- Bo góc: brutalist 0; minimalist ≤12px, cấm nút pill; high-end 2rem + pill; stitch 2.5rem.
+- Font: stitch chỉ cho Fraunces/Instrument Serif; v2 cấm hai font này làm mặc định.
+- high-end bắt eyebrow pill trước mọi H1/H2 và "orb tím phát sáng"; luật repo cho tối đa 1 eyebrow/3 section và cấm glow tím.
+- v1, stitch có "pulse status dot"; luật repo cấm chấm trang trí.
+- v2 mục logo wall dòng 293 gợi ý "monogram một chữ cái trong vòng tròn"; luật repo cấm monogram giả.
+
+**Không hợp stack** (HTML tĩnh + Node build, không npm):
+- v2, v1, gpt-taste, stitch giả định React/Next, Tailwind, Motion/GSAP package.
+- image-to-code, imagegen-*, brandkit cần công cụ tạo ảnh, repo không có.
+
+**Đề xuất dùng skill:**
+
+| Skill | Dùng cho | Ghi chú |
+|---|---|---|
+| redesign-existing-projects | Audit, nâng cấp site có sẵn | Hợp stack nhất |
+| design-taste-frontend (v2, đã sửa cục bộ) | Nguyên tắc: Design Read, dial, hero ≤4 phần tử chữ, chống slop | Bỏ phần React/Tailwind/next-font, bỏ "image-generation tool first", bỏ gợi ý monogram |
+| minimalist-ui | Archetype tĩnh, biên tập (Calm, Editorial, Quiet) | Lấy nguyên tắc, không lấy token Tailwind |
+| industrial-brutalist-ui | Archetype Blueprint, Industrial, Swiss Technical | Không ép đỏ `#E61919`, không dùng Inter Black |
+| high-end-visual-design (đã sửa cục bộ) | Archetype cao cấp (Quiet Luxury, Premium Dark) | Cấm: eyebrow mọi heading, orb tím, double-bezel ở mọi card |
+| full-output-enforcement | Khi viết file dài | Không có luật thiết kế |
+| design-taste-frontend-v1 | **Không dùng** | Bản cũ, mâu thuẫn v2 |
+| gpt-taste | **Không dùng** | GSAP bắt buộc, chọn ngẫu nhiên, mesh gradient |
+| stitch-design-taste | **Không dùng** | Gắn Google Stitch, font mâu thuẫn |
+| image-to-code, imagegen-frontend-web, imagegen-frontend-mobile, brandkit | **Không dùng** | Cần công cụ tạo ảnh |
+
+Ghi chú thêm:
+- `frontend-themes/.claude/settings.json` chỉ chứa khối `mcpServers` (playwright, github với token giữ chỗ). Claude Code không đọc MCP từ `settings.json`, nên file này vô tác dụng; chuyển vào `_legacy/`.
+- `CLAUDE.md` gốc có hai lỗi:
+  - ghi sai "EnSchool-giaoduc là placeholder rỗng" (thực tế 13 trang, có build);
+  - còn mô tả 6 thư mục mirror skill đã bị xóa.
+- `CLAUDE.md` gốc còn lặp lại luật của `frontend-themes/CLAUDE.md`: chấm trang trí, wordmark footer, gạch dài, lệnh build/check.
+
+## d) Suy đoán ngành và loại site (cho registry)
+
+Loại site hiện tại: 13 corporate-site, 3 ecommerce, **0 landing-page**. Vòng xoay nên bắt đầu bằng landing-page.
+
+| Dự án | Ngành (slug) | Loại site | Hero pattern | Độ chắc |
+|---|---|---|---|---|
+| 3DRoom-dichvu | dich-vu-chuyen-nghiep (in 3D) | corporate-site | split | suy đoán |
+| Anhvang-dichvu | doi-song (ngách studio ảnh) | corporate-site | centered polaroid scroll | suy đoán |
+| AttackK-congnghe | ban-le-thuong-mai (gaming gear, đa ngữ) | ecommerce | chưa đọc | suy đoán |
+| BBE-giaoduc | giao-duc | corporate-site | split | chắc |
+| BeatBeat-congnghe | ban-le-thuong-mai (âm thanh) | ecommerce | chưa đọc | chắc |
+| Cocphache-giaoduc | giao-duc (pha chế) | corporate-site | full-bleed tối | chắc |
+| CongthongtinNeu | doi-song (cộng đồng cựu sinh viên) | corporate-site (cổng thông tin) | chưa đọc | suy đoán |
+| EnSchool-giaoduc | giao-duc (trường song ngữ) | corporate-site | chưa đọc | chắc |
+| ISZ-giaoduc | giao-duc | corporate-site | split + widget | chắc |
+| K-Lab's-dichvu | doi-song (chăm sóc giày) | corporate-site | split | suy đoán |
+| Langkinh-congnghe | ban-le-thuong-mai (máy ảnh) | ecommerce | full-bleed overlay | chắc |
+| Luimiere-dichvu | an-uong (nhà hàng tiệc cưới) | corporate-site | full-bleed + finder | chắc |
+| MathE-giaoduc | giao-duc | corporate-site | split + card | chắc |
+| Nhatanthoi-dichvu | doi-song (cho thuê áo dài) | corporate-site (catalog) | chưa đọc | suy đoán |
+| Phimdan-giaoduc | giao-duc (piano) | corporate-site | chưa đọc | chắc |
+| Phusong-congnghe | van-tai-cong-nghiep (hạ tầng viễn thông) | corporate-site | full-bleed overlay | suy đoán |
+| VN-Nikko-cokhi | van-tai-cong-nghiep (cơ khí) | corporate-site | split | chắc |
+
+Phân bố ngành hiện tại:
+- giao-duc 6, doi-song 4, ban-le-thuong-mai 3, van-tai-cong-nghiep 2, dich-vu-chuyen-nghiep 1, an-uong 1;
+- cong-nghe-phan-mem 0 (thư mục `-congnghe` thực tế là bán lẻ hoặc hạ tầng).
+
+## Đề xuất file cho các lô sau
+
+**Lô A: frontend-themes và AGENTS.md**
+- Di chuyển vào `frontend-themes/_legacy/`: `archive/*` (3 theme), `CLAUDE.md` cũ (thành `_legacy/CLAUDE.v1.md`), `.claude/settings.json`, `AUDIT.md` này (sau khi duyệt).
+- Tạo mới:
+  - `frontend-themes/CLAUDE.md` (dưới 100 dòng)
+  - `frontend-themes/industries/*.md` (12 file)
+  - `frontend-themes/site-types/{landing-page,corporate-site,ecommerce}.md`
+  - `frontend-themes/templates/{BRIEF,DESIGN,PLAN}.template.md`
+  - `AGENTS.md` (gốc repo)
+- Đề xuất thêm, cần bạn đồng ý vì nằm ngoài phạm vi yêu cầu: sửa `CLAUDE.md` gốc để bỏ phần lặp, sửa dòng EnSchool, bỏ mô tả mirror đã xóa.
+
+**Lô B:**
+- `.agents/skills/web-anti-ai-lint/`: `SKILL.md`, `references/banned-phrases-vi.md`, `references/rules.md`, `scripts/lint.js`
+- `.agents/skills/web-rotation/`: `SKILL.md`, `data/registry.json`, `scripts/next-combo.js`, `scripts/register.js`
+- Junction tương ứng trong `.claude/skills/`
+
+**Lô C:**
+- `.agents/skills/web-layout-palette-type/`: `SKILL.md`, `references/{layouts,palettes,typography,iconography}.md`
+- `.agents/skills/web-archetypes/`: `SKILL.md`, `references/{giao-duc,dich-vu-chuyen-nghiep,cong-nghe-phan-mem}.md`
+- Junction tương ứng
+
+**Lô D-F:** `.agents/skills/web-archetypes/references/<slug>.md` cho 9 ngành còn lại.
+
+**Ghi chú về luật bộ icon:** cả 16 site dùng Phosphor. Mình đề xuất luật "mỗi dự án một bộ icon" kèm ít nhất 2 bộ thay thế qua CDN có phiên bản cố định (ví dụ Lucide static, Tabler Icons) để luân phiên giữa các dự án.
