@@ -1,0 +1,108 @@
+{
+  "_ghi_chu": "Danh mục máy đọc được cho next-combo.js. Tên archetype, palette_id, hero, layout phải khớp web-archetypes/references/<slug>.md và web-layout-palette-type. Lô B tạo khung khởi điểm; Lô C-F cập nhật giá trị thật.",
+  "site_types": ["landing-page", "corporate-site", "ecommerce"],
+  "hero_patterns": ["hero-split", "hero-asymmetric", "hero-fullbleed", "hero-editorial", "hero-product"],
+  "layout_families": ["stat-big", "case-rows", "logo-strip", "bento", "alt-rows", "sticky-scroll", "tabs", "compare-table", "timeline-h", "steps-big", "catalog", "pricing", "faq", "cta-band", "gallery", "quote", "map-contact", "index-list"],
+  "priority_industries": ["giao-duc", "dich-vu-chuyen-nghiep", "cong-nghe-phan-mem"],
+  "industries": {
+    "giao-duc": {
+      "fit": ["landing-page", "corporate-site"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "friendly-bright", "name": "Friendly Bright", "palette_id": "gd-p1", "heroes": ["hero-split", "hero-asymmetric"] },
+        { "id": "academic-editorial", "name": "Academic Editorial", "palette_id": "gd-p2", "heroes": ["hero-editorial", "hero-split"] },
+        { "id": "youth-bold", "name": "Youth Bold", "palette_id": "gd-p3", "heroes": ["hero-fullbleed", "hero-asymmetric"] },
+        { "id": "calm-premium", "name": "Calm Premium", "palette_id": "gd-p4", "heroes": ["hero-editorial", "hero-fullbleed"] }
+      ]
+    },
+    "dich-vu-chuyen-nghiep": {
+      "fit": ["corporate-site", "landing-page"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "editorial-trust", "name": "Editorial Trust", "palette_id": "dv-p1", "heroes": ["hero-editorial", "hero-split"] },
+        { "id": "warm-local", "name": "Warm Local", "palette_id": "dv-p2", "heroes": ["hero-split", "hero-fullbleed"] },
+        { "id": "bold-modern", "name": "Bold Modern", "palette_id": "dv-p3", "heroes": ["hero-asymmetric", "hero-editorial"] },
+        { "id": "quiet-luxury", "name": "Quiet Luxury", "palette_id": "dv-p4", "heroes": ["hero-fullbleed", "hero-editorial"] }
+      ]
+    },
+    "cong-nghe-phan-mem": {
+      "fit": ["landing-page", "corporate-site"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "product-led-dark", "name": "Product-led Dark", "palette_id": "cn-p1", "heroes": ["hero-product", "hero-split"] },
+        { "id": "swiss-technical", "name": "Swiss Technical", "palette_id": "cn-p2", "heroes": ["hero-editorial", "hero-asymmetric"] },
+        { "id": "light-precise", "name": "Light Precise", "palette_id": "cn-p3", "heroes": ["hero-product", "hero-asymmetric"] },
+        { "id": "data-dense", "name": "Data-dense", "palette_id": "cn-p4", "heroes": ["hero-split", "hero-product"] }
+      ]
+    },
+    "nha-xay-dung": {
+      "fit": ["corporate-site", "landing-page"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "blueprint-technical", "name": "Blueprint Technical", "palette_id": "xd-p1", "heroes": ["hero-asymmetric", "hero-split"] },
+        { "id": "warm-craft", "name": "Warm Craft", "palette_id": "xd-p2", "heroes": ["hero-fullbleed", "hero-editorial"] },
+        { "id": "bold-industrial", "name": "Bold Industrial", "palette_id": "xd-p3", "heroes": ["hero-fullbleed", "hero-asymmetric"] }
+      ]
+    },
+    "y-te-lam-dep": {
+      "fit": ["corporate-site", "landing-page"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "clinical-calm", "name": "Clinical Calm", "palette_id": "yt-p1", "heroes": ["hero-split", "hero-editorial"] },
+        { "id": "soft-beauty-editorial", "name": "Soft Beauty Editorial", "palette_id": "yt-p2", "heroes": ["hero-editorial", "hero-asymmetric"] },
+        { "id": "premium-aesthetic-dark", "name": "Premium Aesthetic Dark", "palette_id": "yt-p3", "heroes": ["hero-fullbleed", "hero-asymmetric"] }
+      ]
+    },
+    "an-uong": {
+      "fit": ["landing-page", "ecommerce"], "less_fit": ["corporate-site"],
+      "archetypes": [
+        { "id": "warm-menu-editorial", "name": "Warm Menu Editorial", "palette_id": "au-p1", "heroes": ["hero-editorial", "hero-split"] },
+        { "id": "street-bold", "name": "Street Bold", "palette_id": "au-p2", "heroes": ["hero-asymmetric", "hero-fullbleed"] },
+        { "id": "fine-dining-dark", "name": "Fine Dining Dark", "palette_id": "au-p3", "heroes": ["hero-fullbleed", "hero-editorial"] }
+      ]
+    },
+    "ban-le-thuong-mai": {
+      "fit": ["ecommerce", "landing-page"], "less_fit": ["corporate-site"],
+      "archetypes": [
+        { "id": "clean-catalog", "name": "Clean Catalog", "palette_id": "bl-p1", "heroes": ["hero-product", "hero-split"] },
+        { "id": "bold-promo", "name": "Bold Promo", "palette_id": "bl-p2", "heroes": ["hero-asymmetric", "hero-product"] },
+        { "id": "boutique-editorial", "name": "Boutique Editorial", "palette_id": "bl-p3", "heroes": ["hero-editorial", "hero-fullbleed"] }
+      ]
+    },
+    "du-lich-luu-tru": {
+      "fit": ["landing-page", "corporate-site"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "immersive-photo-first", "name": "Immersive Photo-first", "palette_id": "dl-p1", "heroes": ["hero-fullbleed", "hero-asymmetric"] },
+        { "id": "boutique-hospitality", "name": "Boutique Hospitality", "palette_id": "dl-p2", "heroes": ["hero-editorial", "hero-split"] },
+        { "id": "adventure-bold", "name": "Adventure Bold", "palette_id": "dl-p3", "heroes": ["hero-fullbleed", "hero-asymmetric"] }
+      ]
+    },
+    "bat-dong-san": {
+      "fit": ["landing-page", "corporate-site"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "luxury-developer", "name": "Luxury Developer", "palette_id": "bds-p1", "heroes": ["hero-fullbleed", "hero-editorial"] },
+        { "id": "marketplace-clear", "name": "Marketplace Clear", "palette_id": "bds-p2", "heroes": ["hero-split", "hero-product"] },
+        { "id": "local-agent-warm", "name": "Local Agent Warm", "palette_id": "bds-p3", "heroes": ["hero-split", "hero-asymmetric"] }
+      ]
+    },
+    "van-tai-cong-nghiep": {
+      "fit": ["corporate-site", "landing-page"], "less_fit": ["ecommerce"],
+      "archetypes": [
+        { "id": "operational-clear", "name": "Operational Clear", "palette_id": "vt-p1", "heroes": ["hero-split", "hero-product"] },
+        { "id": "industrial-bold", "name": "Industrial Bold", "palette_id": "vt-p2", "heroes": ["hero-fullbleed", "hero-asymmetric"] },
+        { "id": "corporate-reliable", "name": "Corporate Reliable", "palette_id": "vt-p3", "heroes": ["hero-editorial", "hero-split"] }
+      ]
+    },
+    "nong-nghiep-thuc-pham": {
+      "fit": ["ecommerce", "corporate-site"], "less_fit": ["landing-page"],
+      "archetypes": [
+        { "id": "organic-earth", "name": "Organic Earth", "palette_id": "nn-p1", "heroes": ["hero-fullbleed", "hero-split"] },
+        { "id": "farm-to-table-editorial", "name": "Farm-to-table Editorial", "palette_id": "nn-p2", "heroes": ["hero-editorial", "hero-asymmetric"] },
+        { "id": "packaging-bold", "name": "Packaging Bold", "palette_id": "nn-p3", "heroes": ["hero-product", "hero-asymmetric"] }
+      ]
+    },
+    "doi-song": {
+      "fit": ["ecommerce", "landing-page", "corporate-site"], "less_fit": [],
+      "archetypes": [
+        { "id": "lifestyle-editorial", "name": "Lifestyle Editorial", "palette_id": "ds-p1", "heroes": ["hero-editorial", "hero-fullbleed"] },
+        { "id": "playful-community", "name": "Playful Community", "palette_id": "ds-p2", "heroes": ["hero-asymmetric", "hero-split"] },
+        { "id": "minimal-studio", "name": "Minimal Studio", "palette_id": "ds-p3", "heroes": ["hero-split", "hero-editorial"] }
+      ]
+    }
+  }
+}
