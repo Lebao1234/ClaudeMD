@@ -8,6 +8,7 @@ auto-loaded for every site via `website/CLAUDE.md` (`@import`). They take preced
 stitch-design-taste). Call them explicitly with `/name` if needed.
 
 ## Layout
+
 - `.agents/skills/` is the source of truth. `.claude`, `.codeartsdoer`, `.codestudio`, `.continue`, `.forge`,
   `.mcpjam` each have a `skills/` mirror: symlinks on this machine, but git stores them as plain copies
   (`core.symlinks=false`), so a fresh clone gets 7 independent copies. Before committing a skill edit, check
@@ -17,6 +18,7 @@ stitch-design-taste). Call them explicitly with `/name` if needed.
 - `website/<Brand>-<nganh>/` = one finished site (nganh: giaoduc, congnghe, dichvu, cokhi).
 
 ## Sites with a build step (most of website/)
+
 - Edit `src/` (pages/, partials/, data/, templates/), never the root `.html` (generated).
 - `node tools/build.js` then `node tools/check.js` (leftover `{{tokens}}`, missing files, `#anchors`, img alt,
   duplicate ids; root HTML only). Node only, no npm install. build.js differs per site (own tokens/data);
@@ -27,11 +29,13 @@ stitch-design-taste). Call them explicitly with `/name` if needed.
 - Exceptions: CongthongtinNeu builds with `tools/build-data.js` + `tools/build-pages.js` (index.html, admin.html hand-written);
   AttackK-congnghe has no build step (edit HTML; `tools/deploy-*` push to ePod using `.mcp.json`). Both test
   with `node tools/smoke-test.js` (needs jsdom).
-  EnSchool-giaoduc and Phusong-congnghe are empty placeholders.
+  EnSchool-giaoduc is an empty placeholder.
 
 ## Global UI bans (in addition to frontend-themes/CLAUDE.md)
+
 - No small colored dot decorations before eyebrow labels.
 - No giant decorative brand-name wordmark at the bottom of the footer.
 
 ## Secrets
+
 - `.mcp.json` files hold real tokens: never commit them.

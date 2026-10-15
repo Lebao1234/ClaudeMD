@@ -44,16 +44,22 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 | Site | Font | Accent |
 |---|---|---|
 | 3DRoom-dichvu | Plus Jakarta Sans, IBM Plex Mono | #036080 |
+| Anhvang-dichvu (Ánh Vàng) | Noto Serif Display, Manrope | #8e6126 |
 | AttackK-congnghe | Space Grotesk, JetBrains Mono | #6073f2 |
 | BBE-giaoduc | Lexend, Noto Sans | #003359 + #de1135 |
 | BeatBeat-congnghe | Unbounded, Onest, JetBrains Mono | #ff3300 |
 | CongthongtinNeu | Roboto, Roboto Condensed | #0076c0 |
+| Cocphache-giaoduc | Big Shoulders Display, Work Sans | #f08b36 (nền tối) |
+| EnSchool-giaoduc (Royal School) | League Spartan, Public Sans | #165dc8 |
 | ISZ-giaoduc | Archivo, Plus Jakarta Sans, Noto Serif SC | #d2232a |
 | K-Lab's-dichvu | Archivo, JetBrains Mono | #f2523f |
 | Langkinh-congnghe | Geist, Geist Mono | #ffb020 |
+| Lighter-dichvu | Epilogue, Hanken Grotesk | #0a66c2 (nền tối) |
+| MathE-giaoduc | Baloo 2, Nunito | #146ef5 |
 | Luimiere-dichvu | Cormorant Garamond, Montserrat | #bc955c |
 | Nhatanthoi-dichvu | Playfair Display, Be Vietnam Pro | #9e2a2b |
 | Phimdan-giaoduc | Bricolage Grotesque, Be Vietnam Pro | #f26b22 |
+| Phusong-congnghe (PhuSong) | Barlow Semi Condensed, IBM Plex Sans, IBM Plex Mono | #1a7d87 (header tối) |
 | VN-Nikko-cokhi | Plus Jakarta Sans, Be Vietnam Pro | #d8262d |
 
   Đã bão hòa: accent đỏ (5 site), Plus Jakarta Sans và Be Vietnam Pro (3 site mỗi font). Site mới nên tránh.
