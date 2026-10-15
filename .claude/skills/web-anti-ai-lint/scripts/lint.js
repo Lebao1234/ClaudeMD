@@ -4,7 +4,7 @@
  *
  *   node lint.js <thư-mục-dự-án> [--industry=<slug>] [--json]
  *
- * Bắt: emoji làm icon, cụm sáo rỗng (references/banned-phrases-vi.md), lorem/placeholder, href="#",
+ * Bắt: emoji làm icon, cụm sáo rỗng (references/cum-sao-rong/*.md), lorem/placeholder, href="#",
  * ảnh thiếu alt, thiếu lang, heading nhảy cấp / số h1, title và meta mất dấu, nhiều bộ icon,
  * cụm cam kết quá mức theo ngành, chữ "số liệu mẫu". Liệt kê [CẦN DỮ LIỆU THẬT] còn lại.
  * Bỏ qua một dòng: thêm <!-- lint-ok: lý do --> trên dòng đó.
@@ -30,9 +30,10 @@ if (opt.industry && !INDUSTRIES.includes(opt.industry)) {
 
 /* ---------------------------------------------------------------- nạp cụm cấm từ bảng markdown */
 function loadPhrases() {
-  const file = path.join(__dirname, "..", "references", "banned-phrases-vi.md");
+  const dir = path.join(__dirname, "..", "references", "cum-sao-rong");
   const list = [];
-  for (const line of fs.readFileSync(file, "utf8").split(/\r?\n/)) {
+  const lines = fs.readdirSync(dir).filter((f) => f.endsWith(".md")).flatMap((f) => fs.readFileSync(path.join(dir, f), "utf8").split(/\r?\n/));
+  for (const line of lines) {
     const m = line.match(/^\|\s*([^|]+?)\s*\|\s*(cấm|hạn chế)\s*\|\s*([^|]*?)\s*\|/);
     if (m) list.push({ phrase: m[1].toLowerCase().normalize("NFC"), level: m[2] === "cấm" ? "LỖI" : "CẢNH BÁO", hint: m[3] });
   }

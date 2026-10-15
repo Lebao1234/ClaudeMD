@@ -21,20 +21,14 @@ node .agents/skills/web-anti-ai-lint/scripts/lint.js website/<Du-an> --industry=
 - Bỏ qua có chủ đích một dòng: thêm `<!-- lint-ok: lý do -->` trên cùng dòng (chỉ khi có dữ liệu xác nhận).
 - `--json` để in kết quả dạng JSON. `--industry` là một trong 12 slug ở `frontend-themes/industries/`.
 
-## Tài liệu (nạp khi cần)
+## Tài liệu (chỉ nạp file cần cho việc đang làm)
 
-- `references/rules.md`: luật icon, chữ, hình, nhịp bố cục (đọc khi viết DESIGN.md/PLAN.md hoặc khi sửa lỗi bố cục).
-- `references/banned-phrases-vi.md`: cụm sáo rỗng và cách viết thay (đọc khi viết copy; script đọc bảng trong file này).
+| Việc | File |
+| --- | --- |
+| Viết copy, tiêu đề, CTA | `references/chu.md` + file hợp loại trang trong `references/cum-sao-rong/` |
+| Chọn icon, hình, bo góc, hero | `references/icon-hinh.md` |
+| Viết PLAN.md, sắp section | `references/bo-cuc.md` |
+| Sửa lỗi kỹ thuật, cam kết theo ngành | `references/ky-thuat-nganh.md` |
+| Trước khi báo xong | `references/preflight.md` |
 
-## Pre-flight (tick trước khi báo xong)
-
-- [ ] `lint.js` không còn `LỖI`; mọi `CẢNH BÁO` đã xử lý hoặc ghi lý do.
-- [ ] Không emoji làm icon; cả dự án dùng một bộ icon, một nét.
-- [ ] Không số liệu, testimonial, chứng nhận bịa; chỗ thiếu ghi `[CẦN DỮ LIỆU THẬT]` và đã liệt kê cho người dùng.
-- [ ] Mỗi tiêu đề section có đối tượng, con số hoặc hành động cụ thể; không cụm trong `banned-phrases-vi.md`.
-- [ ] Đủ dấu tiếng Việt ở chữ hiển thị, `<title>`, meta description, `alt`.
-- [ ] Không 2 section liền kề cùng layout family; ít nhất 4 family mỗi trang; "3 card icon" tối đa 1 lần.
-- [ ] Nền xen kẽ ít nhất 2 tông (sáng / đậm / màu nhấn / ảnh full-bleed).
-- [ ] Không gradient tím-xanh, không glassmorphism mặc định, không bo góc đồng loạt mọi khối.
-- [ ] Hero không phải "badge + tiêu đề + 2 nút" căn giữa (trừ khi DESIGN.md chọn có lý do).
-- [ ] Đã xem thực tế ở 390px và 1440px.
+`cum-sao-rong/`: `doanh-nghiep.md`, `ky-thuat-ket-qua.md`, `ban-hang-trai-nghiem.md`, `han-che.md`. `lint.js` đọc mọi bảng trong thư mục; thêm cụm bằng cách thêm dòng.
