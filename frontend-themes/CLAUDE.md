@@ -4,6 +4,7 @@ Site tĩnh tiếng Việt: HTML/CSS/JS thuần, `src/` + `tools/build.js` (Node,
 Được nạp qua `website/CLAUDE.md` và `AGENTS.md`. Bản cũ: `_legacy/CLAUDE.v1.md` (chỉ để tham khảo).
 
 ## Thứ tự ưu tiên (cao xuống thấp)
+
 1. Lệnh trực tiếp của người dùng.
 2. `DESIGN.md` của dự án.
 3. `industries/<slug>.md` và `site-types/<loại>.md`.
@@ -11,6 +12,7 @@ Site tĩnh tiếng Việt: HTML/CSS/JS thuần, `src/` + `tools/build.js` (Node,
 5. Taste skill: chỉ bổ sung chỗ DESIGN.md không nói. Mâu thuẫn thì DESIGN.md thắng.
 
 ## Quy trình bắt buộc cho dự án mới
+
 1. **BRIEF**: điền `templates/BRIEF.template.md` từ yêu cầu (ngành, ngách nếu `doi-song`, loại site, đối tượng, mục tiêu, dữ liệu thật đã có).
 2. **Chọn tổ hợp**: `node .agents/skills/web-rotation/scripts/next-combo.js [--industry=] [--type=] [--archetype=]`.
    Phần người dùng chỉ định thì khóa; nêu lý do tổ hợp khác 3 dự án gần nhất.
@@ -24,17 +26,20 @@ Site tĩnh tiếng Việt: HTML/CSS/JS thuần, `src/` + `tools/build.js` (Node,
 10. **Báo cáo**: tổ hợp, file, danh sách `[CẦN DỮ LIỆU THẬT]`, lỗi lint đã sửa, việc tồn. Không commit khi chưa được bảo.
 
 ## Cấu trúc thư mục dự án
-```
+
+```text
 website/<Ten-nganh>/
   .claude/  .mcp.json (không commit)  DESIGN.md  PLAN.md  README.md
   assets/{css,js,img}/  src/{pages,partials,data,templates}/  tools/{build.js,check.js}
   index.html  404.html  (các trang khác do build sinh ra)
 ```
+
 - Sửa `src/`, không sửa HTML ở gốc (do build sinh).
 - Trang trong `src/pages/` mở đầu bằng `<!--meta {JSON}-->` (title, description, nav, crumbs...).
 - `node tools/build.js` rồi `node tools/check.js` phải báo OK.
 
 ## Luật cứng (mọi dự án, không ngoại lệ)
+
 - **Dữ liệu thật**: không bịa số liệu, testimonial, đánh giá, chứng nhận, giải thưởng, pháp lý. Thiếu thì ghi `[CẦN DỮ LIỆU THẬT]`.
 - **Không giả danh**: không dùng tên, logo, ảnh, số điện thoại, địa chỉ của doanh nghiệp có thật cho thương hiệu khác.
   Ảnh lấy từ site tham khảo chỉ để dựng giao diện, phải ghi rõ trong README.
@@ -46,6 +51,7 @@ website/<Ten-nganh>/
 - **SEO tối thiểu**: mỗi trang `<title>[Từ khóa] | [Thương hiệu]</title>`, description 140 - 165 ký tự, canonical, og:*, đúng 1 `h1`, Schema.org phù hợp.
 
 ## Taste skill
+
 | Skill | Dùng khi |
 |---|---|
 | redesign-existing-projects | Nâng cấp site có sẵn (hợp stack nhất) |
@@ -57,6 +63,7 @@ website/<Ten-nganh>/
 Không dùng các skill cần công cụ tạo ảnh: repo không có. Ảnh thật để trong `assets/img/` (ảnh của khách, hoặc Unsplash có ghi giấy phép).
 
 ## Lĩnh vực và loại site
+
 - 12 lĩnh vực: `industries/` (nha-xay-dung, y-te-lam-dep, an-uong, ban-le-thuong-mai, du-lich-luu-tru, bat-dong-san,
   giao-duc, dich-vu-chuyen-nghiep, cong-nghe-phan-mem, van-tai-cong-nghiep, nong-nghiep-thuc-pham, doi-song).
 - 3 loại site: `site-types/` (landing-page, corporate-site, ecommerce).
