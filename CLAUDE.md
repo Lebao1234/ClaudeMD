@@ -19,6 +19,10 @@ Không dùng chúng cho việc làm site.
   - Tạo `.agents/skills/web-<tên>/`, rồi chạy `cmd //c mklink /J .claude\\skills\\web-<tên> .agents\\skills\\web-<tên>`.
   - Skill riêng của repo dùng tiền tố `web-`.
   - Không sửa taste skill đã cài (danh sách trong `skills-lock.json`).
+- Độ dài skill `web-*` (skill dài thì agent đọc loãng):
+  - `SKILL.md` ≤ 40 dòng: cách chạy + bảng "việc → file cần nạp".
+  - Mỗi file `references/` ≤ 50 dòng, một chủ đề. Dài hơn thì tách thư mục con (ví dụ một file mỗi ngành, mỗi archetype).
+  - Bảng dữ liệu script đọc cũng tách theo nhóm; script đọc cả thư mục.
 - 2 taste skill đã sửa cục bộ so với upstream Leonxlnx/taste-skill: design-taste-frontend và high-end-visual-design.
   - Phần đã sửa: hero archetype, hình dạng header/footer, nav hai chế độ, cấm monogram.
   - Đồng bộ lại từ upstream sẽ mất các sửa đổi này.
