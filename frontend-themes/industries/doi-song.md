@@ -39,7 +39,7 @@ Ngành rộng: thời trang, thể thao, thú cưng, sự kiện, cộng đồng
 ## 5. Loại site
 
 | Ngách | Hợp nhất | Ít hợp |
-|---|---|---|
+| --- | --- | --- |
 | Thời trang, thú cưng (bán hàng) | ecommerce, landing-page | corporate-site |
 | Sự kiện | landing-page | ecommerce (trừ bán vé) |
 | Thể thao (phòng tập, câu lạc bộ) | corporate-site, landing-page | ecommerce |

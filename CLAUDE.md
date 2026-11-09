@@ -29,6 +29,12 @@ Không dùng chúng cho việc làm site.
 - `website/<Thương-hiệu>-<ngành>/` là một site. `website/` nằm trong `.gitignore`, chỉ có ở máy.
 - `frontend-themes/_legacy/` chứa bộ luật cũ và bản nháp theme, chỉ để tham khảo.
 
+## Hook (`.claude/settings.json`, script ở `.claude/hooks/`)
+
+- `guard.js` (trước khi chạy): chặn thêm ép `website/` vào git, commit hoặc ghi token `epod_` vào file được git theo dõi, sửa HTML build ở gốc site.
+- `rebuild.js` (sau khi sửa): file trong `website/<site>/src/` thì chạy `build.js` + `check.js` của site, lỗi báo lại ngay.
+- Sửa hook: thử bằng dữ liệu giả trước; hook mới cần mở `/hooks` một lần hoặc khởi động lại phiên.
+
 ## Site có bước build (phần lớn website/)
 
 - Sửa `src/` (pages/, partials/, data/, templates/), không sửa `.html` ở gốc (do build sinh).
@@ -43,9 +49,13 @@ Không dùng chúng cho việc làm site.
   - Gặp lỗi thì sửa và build lại ngay.
 - Ngoại lệ:
   - CongthongtinNeu build bằng `tools/build-data.js` + `tools/build-pages.js` (index.html, admin.html viết tay).
-  - AttackK-congnghe không có build: sửa HTML trực tiếp; `tools/deploy-*` đẩy lên ePod bằng `.mcp.json`.
+  - AttackK-congnghe không có build: sửa HTML trực tiếp; `tools/deploy-*` đẩy lên ePod qua `tools/mcp.js` (token lấy từ biến `EPOD_MCP_TOKEN_ATTACKK_CONGNGHE`, không có thì đọc `.mcp.json`).
   - Cả hai kiểm tra bằng `node tools/smoke-test.js` (cần jsdom).
 
 ## Bảo mật
 
-- File `.mcp.json` chứa token thật: không bao giờ commit.
+- Mỗi site ePod một token. Token ghi thẳng trong `website/<Du-an>/.mcp.json` là được (`website/` bị gitignore, không push).
+  - Hoặc dùng biến `EPOD_MCP_TOKEN_<TÊN_THƯ_MỤC>` (`frontend-themes/templates/ENV-SETUP.md`).
+  - Chuẩn khung: `frontend-themes/templates/mcp.template.json`, kiểm bằng `ensure-mcp.js`.
+- Không ghi token vào file được git theo dõi; không `git add -f` thư mục `website/`. `.env`, `.env.*` bị ignore.
+- Có token trong `.mcp.json` = site đã lên ePod (trường `epod` trong registry của web-rotation).

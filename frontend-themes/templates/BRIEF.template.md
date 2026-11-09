@@ -28,7 +28,9 @@ Thư mục: `website/[Ten-nganh]` · Ngày: [dd/mm/yyyy]
 | Danh sách dịch vụ/sản phẩm + giá | [có/chưa] | |
 | Con người (đội ngũ, giáo viên, bác sĩ) | [có/chưa] | |
 | Số liệu, đánh giá, chứng nhận | [có/chưa] | Không có thì để `[CẦN DỮ LIỆU THẬT]` |
-| Thông tin pháp nhân, liên hệ | [có/chưa] | |
+| Thông tin pháp nhân, liên hệ | [có/chưa] | Tên, MST, địa chỉ, hotline, giờ mở cửa |
+| Facebook page, Zalo, kênh chat | [có/chưa] | URL/số thật; chưa có thì ẩn nút, ghi `[CẦN DỮ LIỆU THẬT]` |
+| Email nhận thông báo / endpoint form | [có/chưa] | Endpoint thật hoặc mô phỏng có ghi README |
 
 ## Tham khảo
 

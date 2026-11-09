@@ -12,6 +12,7 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 ---
 
 ## 1. Trước khi code
+
 1. Nghiên cứu 2-3 site tham khảo cùng ngành (firecrawl): màu, font, bố cục, giọng văn.
 2. Khai báo Design Read: "Reading this as: [loại trang] for [khách hàng], with [vibe] language, leaning toward [trường phái]."
 3. Đặt 3 dial (1-10): `DESIGN_VARIANCE`, `MOTION_INTENSITY`, `VISUAL_DENSITY`.
@@ -20,6 +21,7 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 6. Viết copy thật cho từng section trước, rồi mới dựng layout.
 
 ## 2. Cấm (làm site trông như AI sinh ra)
+
 - Monogram/ô chữ cái giả trong dropdown (`T`, `X`, `G`, `.drop-code`): dùng ảnh thật, icon SVG nét mảnh, hoặc chỉ text.
 - Chấm màu nhỏ trang trí (trước eyebrow, "status dot" nhấp nháy).
 - Chữ tên thương hiệu khổng lồ làm trang trí ở đáy footer.
@@ -35,6 +37,7 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 - Dấu – hoặc — trong nội dung (build sẽ lỗi): dùng `-`.
 
 ## 3. Màu và font
+
 - 1 accent chính, độ bão hòa < 80%, trừ khi đó là màu nhận diện có sẵn của khách (khi đó giữ nguyên và ghi vào README).
 - Nền trung tính chọn 1 họ (lạnh hoặc ấm), không trộn.
 - Font BẮT BUỘC có bộ ký tự tiếng Việt (Google Fonts có subset `vietnamese`). Nhiều font Fontshare (Satoshi,
@@ -42,7 +45,7 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 - Mỗi site mới phải khác các site đã có. Đã dùng:
 
 | Site | Font | Accent |
-|---|---|---|
+| --- | --- | --- |
 | 3DRoom-dichvu | Plus Jakarta Sans, IBM Plex Mono | #036080 |
 | Anhvang-dichvu (Ánh Vàng) | Noto Serif Display, Manrope | #8e6126 |
 | AttackK-congnghe | Space Grotesk, JetBrains Mono | #6073f2 |
@@ -64,13 +67,14 @@ Các `DESIGN.md`/`PLAN.md` cũ đã được lưu trữ trong `frontend-themes/a
 
   Đã bão hòa: accent đỏ (5 site), Plus Jakarta Sans và Be Vietnam Pro (3 site mỗi font). Site mới nên tránh.
   Cập nhật bảng này khi thêm site.
+
 - Chữ: tiêu đề section ~`clamp(2.25rem, 5vw, 3.75rem)`, `letter-spacing` âm nhẹ, `line-height` ~1;
   thân bài `max-width: 65ch`, `line-height` 1.6. Tiêu đề hero tối đa 2 dòng trên desktop.
 
 ## 4. Hero: luân phiên, không mặc định 2 cột
 
 | Archetype | Hợp nhất với | Đặc điểm |
-|---|---|---|
+| --- | --- | --- |
 | 1. Carousel/slider tràn viền | Thời trang, cho thuê đồ, studio ảnh, BĐS, resort, showroom, bán lẻ | 2-4 slide ảnh 16:9/21:9, cross-fade, chữ đè ảnh có vignette mềm, điều hướng bằng progress bar/mũi tên mảnh (không chấm tròn to) |
 | 2. Centered cinematic | Công nghệ, SaaS, EdTech, sự kiện | Tiêu đề căn giữa tối đa 2 dòng, ảnh/video thật phủ tối dần (không mesh) |
 | 3. Bento | Phần mềm, startup, app, agency số | Ô chính chứa tiêu đề + CTA, 2-3 ô phụ có nội dung thật, không ô trống |
@@ -81,13 +85,16 @@ Hero tối đa 4 phần tử chữ (eyebrow, tiêu đề, mô tả, CTA), paddin
 Lưới dùng CSS Grid, khung `max-width: 1400px` hoặc 1280px.
 
 ## 5. Header, footer, điều hướng
+
 **Header** (chọn theo ngành, cả hai đều hợp lệ):
+
 - A. Bo tròn nổi: thanh tách khỏi mép trên 1-1.5rem, `border-radius: 999px` hoặc 1rem, nền mờ + viền hairline.
   Hợp: công nghệ, AI, startup, sản phẩm sáng tạo, portfolio.
 - B. Thẳng tràn viền: `width: 100%`, không bo, sticky, `border-bottom: 1px`, nội dung căn theo khung lưới.
   Hợp: công nghiệp, cơ khí, bán lẻ lớn, doanh nghiệp truyền thống, tài chính, thời trang editorial, kiến trúc.
 
 **Footer:**
+
 - A. Card bo tròn lọt trong trang (lề 1-2rem, `border-radius` 1.5-2.5rem), có khối CTA trước các cột link.
   Hợp: SaaS, startup, app, thời trang/lifestyle, studio sáng tạo.
 - B. Thẳng tràn viền: chạm đáy, `border-top: 1px`, lưới 3-4 cột (pháp nhân/địa chỉ, danh mục, hỗ trợ & chính sách, bản quyền).
@@ -98,22 +105,26 @@ Lưới dùng CSS Grid, khung `max-width: 1400px` hoặc 1280px.
 Active: gạch chân mảnh hoặc nền pill rất nhạt. Dưới 1024px: hamburger mở overlay toàn màn hình.
 
 **Chế độ nav 2: cửa hàng/catalog nhiều danh mục = mega-dropdown rộng ~80% (`width: min(85vw, 1200px)`).**
+
 - Cột danh mục con (20-25%): link chữ, hover tinh tế.
 - Lưới 3-4 sản phẩm (50-55%): ảnh thật 1:1 hoặc 4:3, tên, giá hoặc nhãn (`Mới`, `Bán chạy`).
 - Card khuyến mãi (20-25%): ảnh banner + 1 CTA ngắn cụ thể (vd "Xem bộ sưu tập Tết").
 - Dải đáy: "Xem toàn bộ [N] sản phẩm".
 
 ## 6. Ảnh
+
 - Ảnh thật tải về `assets/img/` (Unsplash, ghi giấy phép trong README) hoặc ảnh khách cung cấp.
   Repo này không có công cụ `generate_image`.
 - Mọi `<img>` có `alt` (rỗng nếu chỉ trang trí và chữ bên cạnh đã nói đủ), `width`/`height`, `loading="lazy"` ngoài màn hình đầu.
 
 ## 7. Copy
+
 - Tiêu đề tối đa 8 chữ, mô tả tối đa 20 chữ, CTA tối đa 3 chữ; mỗi ý định chỉ 1 CTA trên toàn trang.
 - Cấm sáo rỗng: "Khám phá ngay", "Giải pháp toàn diện", "Đồng hành cùng bạn", "Nâng tầm", "Đột phá".
   Viết cụ thể: con số thật, tên sản phẩm, địa điểm, thời gian.
 
 ## 8. Xong khi
+
 - [ ] Mỗi trang: `<title>[Từ khóa] | [Thương hiệu]</title>`, meta description 150-160 ký tự, canonical,
       og:title/description/image/url, đúng 1 `h1`, heading không nhảy cấp, Schema.org phù hợp
       (Organization/LocalBusiness/Course/Product).

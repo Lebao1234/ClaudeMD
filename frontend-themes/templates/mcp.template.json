@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "epodsystem": {
+      "type": "http",
+      "url": "https://mcp.epodsystem.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${EPOD_MCP_TOKEN_DU_AN}"
+      }
+    }
+  }
+}

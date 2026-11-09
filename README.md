@@ -11,7 +11,7 @@ Kho lưu trữ này cung cấp hệ thống các kỹ năng (**Skills**) chuyên
 Dưới đây là danh sách chi tiết các skill được tích hợp trong thư mục [`.agents/skills/`](.agents/skills):
 
 | STT | Tên Skill | Phân loại | Mục đích & Trọng tâm sử dụng |
-|:---:|:---|:---:|:---|
+| :---: | :--- | :---: | :--- |
 | 1 | **`design-taste-frontend`** | *Frontend UI/UX* | **Bộ quy chuẩn thiết kế chống generic (Anti-slop)** cho Landing Page, Portfolio và Redesign. Tự động xác định tone & mood phù hợp, tránh layout rập khuôn của AI. |
 | 2 | **`high-end-visual-design`** | *Design System* | **Quy chuẩn giao diện đẳng cấp Agency.** Định nghĩa chính xác typography, khoảng cách (spacing), hiệu ứng đổ bóng mềm (diffused shadow), cấu trúc card và micro-interactions tinh tế. |
 | 3 | **`gpt-taste`** | *Motion & GSAP* | **Kỹ sư chuyển động & bố cục nâng cao.** Ứng dụng GSAP ScrollTrigger (pinning, stacking, scrubbing), bố cục Bento Grid không khe hở (gapless), cấu trúc AIDA chuẩn chuyển đổi. |
@@ -31,26 +31,32 @@ Dưới đây là danh sách chi tiết các skill được tích hợp trong th
 ## 🛠️ Chi tiết từng Skill & Khi nào nên dùng
 
 ### 1. `design-taste-frontend` & `high-end-visual-design`
+
 - **Khi nào dùng:** Bắt đầu tạo mới trang web, Landing page bán hàng, trang dịch vụ doanh nghiệp hoặc Portfolio cá nhân.
 - **Lợi ích:** Loại bỏ các phong cách "AI rập khuôn" (như background tím gradient mờ ảo, card bo góc màu xám nhạt đơn điệu, font Inter mặc định), thay bằng bảng màu bespoke và typo cá tính.
 
 ### 2. `imagegen-frontend-web` & `imagegen-frontend-mobile`
+
 - **Khi nào dùng:** Cần tạo visual concept trước khi bắt tay vào code.
 - **Điểm đặc biệt:** Hướng dẫn AI tạo ảnh chia từng section riêng biệt theo tỉ lệ ngang (thay vì dồn tất cả vào một ảnh dài gây mất chi tiết), giúp lập trình viên tái hiện lại giao diện chuẩn xác 1:1.
 
 ### 3. `gpt-taste` (GSAP Motion Specialist)
+
 - **Khi nào dùng:** Cần trang web có hiệu ứng cuộn mượt mà (smooth scrolling), hiệu ứng dính khung (pinning), cuộn lật trang (scrubbing animation), tạo cảm giác mượt mà và cao cấp như các trang của Apple hay Awwwards.
 
 ### 4. `redesign-existing-projects`
+
 - **Khi nào dùng:** Bạn đã có sẵn một mã nguồn (Tailwind, Bootstrap, HTML/CSS thuần...) nhưng giao diện nhìn đơn điệu hoặc thiếu tính thẩm mỹ.
 - **Nguyên tắc:** Nâng cấp lớp CSS và cấu trúc trình bày, tuyệt đối giữ nguyên logic JavaScript/API hiện hành.
 
 ### 5. `industrial-brutalist-ui` & `minimalist-ui`
+
 - **Khi nào dùng:**
   - `industrial-brutalist-ui`: Các dự án kỹ thuật, cơ khí, telemetry, crypto terminal, dashboard mật độ dữ liệu cao.
   - `minimalist-ui`: Nền tảng quản lý tri thức, docs, ứng dụng ghi chú, trang blog tối giản mang phong cách editorial.
 
 ### 6. `stitch-design-taste`
+
 - **Khi nào dùng:** Tích hợp với công cụ [Google Stitch](https://labs.google/stitch) để tạo tài liệu chuẩn `DESIGN.md`, giúp quy chuẩn hóa phong cách thiết kế xuyên suốt toàn bộ các màn hình.
 
 ---
@@ -92,19 +98,24 @@ SkillMD-BDSIDCORP/
 ## 🚀 Cách kích hoạt Skill trong các môi trường AI
 
 ### 1. Claude Code / Antigravity / Cursor
+
 Các skill được đặt trong `.agents/skills/<tên-skill>/SKILL.md`. Khi làm việc với Assistant, bạn chỉ cần yêu cầu:
+
 - *"Hãy sử dụng skill `design-taste-frontend` để thiết kế lại trang chủ."*
 - *"Áp dụng `gpt-taste` thêm animation cuộn GSAP cho các section."*
 - *"Dùng skill `imagegen-frontend-web` để lên prompt sinh ảnh giao diện từng section."*
 
 ### 2. Tự động kích hoạt (Auto-invocation)
+
 Mỗi skill đều có định dạng chuẩn YAML frontmatter:
+
 ```yaml
 ---
 name: high-end-visual-design
 description: Teaches the AI to design like a high-end agency...
 ---
 ```
+
 AI Assistant sẽ tự động phát hiện và kích hoạt kỹ năng tương ứng khi gặp ngữ cảnh công việc liên quan.
 
 Ngoại lệ: 7 skill có `disable-model-invocation: true` vì không hợp với dự án HTML thuần, không có công cụ sinh ảnh
@@ -117,4 +128,5 @@ header/footer, điều hướng 2 chế độ, cấm monogram). Đồng bộ l�
 ---
 
 ## 🤝 Đóng góp & Phát triển
+
 Mọi đóng góp nhằm hoàn thiện các skill hoặc bổ sung template website mới đều được hoan nghênh. Vui lòng tạo Pull Request hoặc Issue trên [GitHub Repository](https://github.com/Lebao1234/SkillMD-BDSIDCORP).

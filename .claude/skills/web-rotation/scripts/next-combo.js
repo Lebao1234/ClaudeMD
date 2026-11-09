@@ -3,13 +3,14 @@
  * web-rotation / next-combo: đề xuất tổ hợp cho dự án tiếp theo từ registry.
  *
  *   node next-combo.js [--industry=<slug>] [--type=<loại>] [--archetype=<id>] [--hero=<pattern>] [--palette=<id>]
- *                      [--seed=<số>] [--json]
+ *                      [--header=<family>] [--footer=<family>] [--seed=<số>] [--json]
  *
  * Cờ nào có thì khóa; phần còn lại tự xoay theo luật trong ../SKILL.md:
  * - loại site xoay landing-page → corporate-site → ecommerce, bỏ qua loại "ít hợp" với ngành, không lặp loại liền trước
  * - không trùng ngành + archetype trong 4 dự án gần nhất
  * - không trùng hero pattern trong 3 dự án gần nhất
  * - không trùng palette_id trong 5 dự án gần nhất
+ * - không trùng header/footer family trong 3 dự án gần nhất
  * - không chỉ định ngành: 3 ngành ưu tiên chiếm khoảng 60%, 9 ngành còn lại 40%
  */
 "use strict";
@@ -28,6 +29,8 @@ const fail = (msg) => { console.error(msg); process.exit(2); };
 if (opt.industry && !catalog.industries[opt.industry]) fail(`Ngành không có trong catalog: ${opt.industry}`);
 if (opt.type && !catalog.site_types.includes(opt.type)) fail(`Loại site không hợp lệ: ${opt.type} (${catalog.site_types.join(", ")})`);
 if (opt.hero && !catalog.hero_patterns.includes(opt.hero)) fail(`Hero pattern không hợp lệ: ${opt.hero} (${catalog.hero_patterns.join(", ")})`);
+if (opt.header && !catalog.header_families.includes(opt.header)) fail(`Header family không hợp lệ: ${opt.header} (${catalog.header_families.join(", ")})`);
+if (opt.footer && !catalog.footer_families.includes(opt.footer)) fail(`Footer family không hợp lệ: ${opt.footer} (${catalog.footer_families.join(", ")})`);
 
 // Ngẫu nhiên có seed để chạy lại ra cùng kết quả
 const seed = Number(opt.seed || Date.now() % 1e9);
@@ -99,6 +102,29 @@ if (opt.archetype) {
 }
 if (opt.hero && !chosen.a.heroes.includes(opt.hero)) notes.push(`Hero ${opt.hero} không nằm trong danh sách hero của archetype ${chosen.a.id}: kiểm tra lại khi viết DESIGN.md.`);
 
+/* ----------------------------------------------------------- 3b. header/footer */
+const SHELL_FIT = {
+  "landing-page": { header_families: ["centered-logo", "transparent-over-hero", "split-cta", "minimal-drawer"], footer_families: ["compact-legal", "minimal-single-row", "dark-cta", "contact-first"] },
+  "corporate-site": { header_families: ["utility-bar", "centered-logo", "transparent-over-hero", "split-cta", "minimal-drawer"], footer_families: ["editorial-4col", "compact-legal", "dark-cta", "contact-first", "mega-sitemap"] },
+  "ecommerce": { header_families: ["utility-bar", "centered-logo", "split-cta", "mega-catalog", "minimal-drawer"], footer_families: ["editorial-4col", "compact-legal", "contact-first", "mega-sitemap", "minimal-single-row"] },
+};
+const usedHeader = new Set(recent(3).map((p) => p.header_family).filter(Boolean));
+const usedFooter = new Set(recent(3).map((p) => p.footer_family).filter(Boolean));
+function pickShell(kind, used, locked) {
+  const fit = SHELL_FIT[siteType][kind];
+  if (locked) {
+    if (used.has(locked)) notes.push(`${kind} ${locked} đã dùng trong 3 dự án gần nhất (giữ vì người dùng chỉ định).`);
+    if (!fit.includes(locked)) notes.push(`${kind} ${locked} không nằm trong nhóm hợp ${siteType} (giữ vì người dùng chỉ định).`);
+    return locked;
+  }
+  const free = fit.filter((x) => !used.has(x));
+  if (!free.length) notes.push(`Mọi ${kind} hợp ${siteType} đều đã dùng trong 3 dự án gần nhất; chọn ngẫu nhiên.`);
+  const pool = free.length ? free : fit;
+  return pool[Math.floor(rand() * pool.length)];
+}
+const headerFamily = pickShell("header_families", usedHeader, opt.header);
+const footerFamily = pickShell("footer_families", usedFooter, opt.footer);
+
 /* ---------------------------------------------------------------- 4. layout family gợi ý */
 const ESSENTIAL = { "landing-page": ["faq", "cta-band"], "corporate-site": ["index-list", "map-contact"], ecommerce: ["catalog", "compare-table"] };
 const pool = chosen.a.layouts || catalog.layout_families;
@@ -106,7 +132,7 @@ const freq = Object.fromEntries(pool.map((f) => [f, recent(5).filter((p) => (p.l
 const layouts = [...new Set(ESSENTIAL[siteType].filter((f) => pool.includes(f)).concat(pool.slice().sort((x, y) => freq[x] - freq[y] || rand() - 0.5)))].slice(0, 6);
 
 /* ---------------------------------------------------------------- in kết quả */
-const combo = { site_type: siteType, industry, archetype: chosen.a.id, archetype_name: chosen.a.name, palette_id: chosen.palette, hero_pattern: chosen.hero, layout_families: layouts, seed };
+const combo = { site_type: siteType, industry, archetype: chosen.a.id, archetype_name: chosen.a.name, palette_id: chosen.palette, hero_pattern: chosen.hero, header_family: headerFamily, footer_family: footerFamily, layout_families: layouts, seed };
 const last3 = recent(3);
 if (opt.json) {
   console.log(JSON.stringify({ combo, compared_with: last3, notes }, null, 2));
@@ -117,6 +143,8 @@ if (opt.json) {
   console.log(`  Archetype      : ${chosen.a.name} (${chosen.a.id})${locked("archetype")}`);
   console.log(`  palette_id     : ${chosen.palette}${locked("palette")}`);
   console.log(`  Hero pattern   : ${chosen.hero}${locked("hero")}`);
+  console.log(`  Header family  : ${headerFamily}${locked("header")}`);
+  console.log(`  Footer family  : ${footerFamily}${locked("footer")}`);
   console.log(`  Layout family  : ${layouts.join(", ")}`);
   console.log(`  seed           : ${seed} (chạy lại với --seed=${seed} để ra cùng kết quả)`);
   console.log("\nSO VỚI 3 DỰ ÁN GẦN NHẤT");
@@ -126,9 +154,11 @@ if (opt.json) {
       p.industry !== industry ? "khác ngành" : (p.archetype !== chosen.a.id ? "cùng ngành, khác archetype" : "CÙNG archetype"),
       p.palette_id !== chosen.palette ? "khác palette" : "CÙNG palette",
       p.hero_pattern !== chosen.hero ? "khác hero" : "CÙNG hero",
+      !p.header_family ? "chưa có header (dự án cũ)" : (p.header_family !== headerFamily ? "khác header" : "CÙNG header"),
+      !p.footer_family ? "chưa có footer (dự án cũ)" : (p.footer_family !== footerFamily ? "khác footer" : "CÙNG footer"),
     ];
     console.log(`  ${p.date} ${p.project.padEnd(20)} ${p.site_type}/${p.industry}/${p.hero_pattern} → ${diff.join(", ")}`);
   }
   if (notes.length) { console.log("\nLƯU Ý"); notes.forEach((n) => console.log(`  - ${n}`)); }
-  console.log(`\nGhi vào registry sau khi build xong:\n  node .agents/skills/web-rotation/scripts/register.js --project=<Thu-muc> --type=${siteType} --industry=${industry} --archetype=${chosen.a.id} --palette=${chosen.palette} --hero=${chosen.hero} --layouts=${layouts.join(",")}`);
+  console.log(`\nGhi vào registry sau khi build xong:\n  node .agents/skills/web-rotation/scripts/register.js --project=<Thu-muc> --type=${siteType} --industry=${industry} --archetype=${chosen.a.id} --palette=${chosen.palette} --hero=${chosen.hero} --header=${headerFamily} --footer=${footerFamily} --layouts=${layouts.join(",")}`);
 }

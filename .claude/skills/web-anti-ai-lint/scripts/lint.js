@@ -6,7 +6,8 @@
  *
  * Bắt: emoji làm icon, cụm sáo rỗng (references/cum-sao-rong/*.md), lorem/placeholder, href="#",
  * ảnh thiếu alt, thiếu lang, heading nhảy cấp / số h1, title và meta mất dấu, nhiều bộ icon,
- * cụm cam kết quá mức theo ngành, chữ "số liệu mẫu". Liệt kê [CẦN DỮ LIỆU THẬT] còn lại.
+ * cụm cam kết quá mức theo ngành, chữ "số liệu mẫu", .mcp.json thiếu hoặc chứa token thật.
+ * Liệt kê [CẦN DỮ LIỆU THẬT] còn lại.
  * Bỏ qua một dòng: thêm <!-- lint-ok: lý do --> trên dòng đó.
  * Không phụ thuộc thư viện ngoài. Thoát mã 1 nếu còn LỖI.
  */
@@ -190,9 +191,30 @@ function lintFile(file) {
   return issues;
 }
 
+/* ---------------------------------------------------------------- .mcp.json của dự án */
+// Chuẩn: frontend-themes/templates/mcp.template.json. Sửa bằng web-project-scaffold/scripts/ensure-mcp.js
+function lintMcp(root) {
+  const file = path.join(root, ".mcp.json");
+  if (!fs.existsSync(file)) return [{ file, line: 1, level: "LỖI", rule: "mcp", msg: "thiếu .mcp.json (chạy ensure-mcp.js)" }];
+  const text = fs.readFileSync(file, "utf8");
+  // Token ghi trong file (website/ bị gitignore) hoặc biến EPOD_MCP_TOKEN_<TÊN_THƯ_MỤC>, giống ensure-mcp.js
+  const env = "EPOD_MCP_TOKEN_" + path.basename(path.resolve(root)).toUpperCase().replace(/[^A-Z0-9]+/g, "_").replace(/^_|_$/g, "");
+  const out = [];
+  try {
+    const ep = (JSON.parse(text).mcpServers || {}).epodsystem;
+    const auth = ep?.headers?.Authorization || "";
+    const ok = auth === `Bearer \${${env}}` || /^Bearer\s+(?!\$\{)\{?[^{}\s]{8,}\}?$/.test(auth);
+    if (!ep) out.push({ file, line: 1, level: "LỖI", rule: "mcp", msg: "không có server epodsystem (chạy ensure-mcp.js)" });
+    else if (!ok) out.push({ file, line: 1, level: "CẢNH BÁO", rule: "mcp", msg: `epodsystem chưa có token: dán token vào Authorization hoặc dùng Bearer \${${env}}` });
+  } catch (e) {
+    out.push({ file, line: 1, level: "LỖI", rule: "mcp", msg: `.mcp.json không phải JSON hợp lệ: ${e.message}` });
+  }
+  return out;
+}
+
 /* ---------------------------------------------------------------- chạy */
 const files = walk(path.resolve(dir));
-const all = files.flatMap(lintFile);
+const all = files.flatMap(lintFile).concat(lintMcp(path.resolve(dir)));
 const rel = (f) => path.relative(process.cwd(), f).replace(/\\/g, "/");
 const count = (lv) => all.filter((i) => i.level === lv).length;
 

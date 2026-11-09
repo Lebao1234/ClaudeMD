@@ -15,7 +15,7 @@ Atmosphere: **Trust First, Substance Over Style** — khách hàng là C-suite, 
 ## 2. Color Palette & Roles
 
 | Token | Hex | Functional Role |
-|---|---|---|
+| --- | --- | --- |
 | **Warm Stone** | `#FAFAF9` | Primary background — Stone-50 |
 | **Pure Surface** | `#FFFFFF` | Cards, modals |
 | **Forest Ink** | `#14532D` | Primary accent — CTAs, links, emphasis — Green-900 |
@@ -54,6 +54,7 @@ Mono Font: IBM Plex Mono — cho số liệu, case study data
 ## 4. Component Stylings
 
 ### Buttons
+
 - **Primary:** `background: #14532D` | `color: white` | `padding: 0.8125rem 2rem` | `border-radius: 6px` | `font-weight: 600` | `letter-spacing: 0.01em`
 - **Hover:** `background: #0F3D20` | NO glow
 - **Active:** `-translate-y-[1px]`
@@ -61,6 +62,7 @@ Mono Font: IBM Plex Mono — cho số liệu, case study data
 - KHÔNG pill-shaped buttons — `border-radius: 6px` max cho theme này
 
 ### Cards / Case Study Cards
+
 - **Border:** `1px solid rgba(214,211,209,0.8)`
 - **Radius:** `8px`
 - **Shadow:** `0 1px 2px rgba(28,25,23,0.04)`
@@ -68,10 +70,12 @@ Mono Font: IBM Plex Mono — cho số liệu, case study data
 - Case study: client logo + challenge snippet + outcome metric (số thật)
 
 ### Service Cards
+
 - KHÔNG icon cartoon trên đầu — dùng số thứ tự (01, 02, 03) hoặc line art đơn giản
 - Text-heavy hơn, density 5 — đây là dịch vụ cần giải thích
 
 ### Testimonials / Quotes
+
 - Pull quote với `Satoshi Italic` | `font-size: 1.25rem`
 - Attribution: Tên đầy đủ + Chức vụ + Công ty (KHÔNG chỉ "- Nguyễn Văn A")
 - Max 3 dòng quote
@@ -90,6 +94,7 @@ Mono Font: IBM Plex Mono — cho số liệu, case study data
 - **Max-width:** `1200px` — tighter than education, more editorial
 
 ### Section Order (Landing Page)
+
 ```
 1. Navigation (minimal, text-only logo, max 5 nav items)
 2. Hero (left-aligned statement + client outcome stat)
@@ -128,4 +133,3 @@ Mono Font: IBM Plex Mono — cho số liệu, case study data
 - Không gradient text
 - Không dark/light mode toggle — pick one and lock it (theme này: Light)
 - Không fake award logos nếu không có thật
-

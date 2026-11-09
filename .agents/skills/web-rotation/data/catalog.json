@@ -1,8 +1,10 @@
 {
-  "_ghi_chu": "Danh mục máy đọc được cho next-combo.js. Tên archetype, palette_id, hero, layout phải khớp web-archetypes/references/<slug>.md và web-layout-palette-type. Lô B tạo khung khởi điểm; Lô C-F cập nhật giá trị thật.",
+  "_ghi_chu": "Danh mục máy đọc được cho next-combo.js. Tên archetype, palette_id, hero, layout, header/footer family phải khớp frontend-themes/templates/DESIGN.template.md và skill web-rotation. Màu và font cụ thể do agent chốt trong DESIGN.md của từng dự án.",
   "site_types": ["landing-page", "corporate-site", "ecommerce"],
   "hero_patterns": ["hero-split", "hero-asymmetric", "hero-fullbleed", "hero-editorial", "hero-product"],
   "layout_families": ["stat-big", "case-rows", "logo-strip", "bento", "alt-rows", "sticky-scroll", "tabs", "compare-table", "timeline-h", "steps-big", "catalog", "pricing", "faq", "cta-band", "gallery", "quote", "map-contact", "index-list"],
+  "header_families": ["utility-bar", "centered-logo", "transparent-over-hero", "split-cta", "mega-catalog", "minimal-drawer"],
+  "footer_families": ["editorial-4col", "compact-legal", "dark-cta", "contact-first", "minimal-single-row", "mega-sitemap"],
   "priority_industries": ["giao-duc", "dich-vu-chuyen-nghiep", "cong-nghe-phan-mem"],
   "industries": {
     "giao-duc": {

@@ -1,5 +1,7 @@
-# MCP configs hold API tokens
-**/.mcp.json
+# Token, khóa API: để trong .env (không commit) hoặc trong website/ (bị ignore bên dưới).
+# website/ bị ignore nên .mcp.json trong đó được chứa token ePod (xem frontend-themes/templates/ENV-SETUP.md).
+.env
+.env.*
 
 # Local website folder
 website/

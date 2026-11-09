@@ -10,7 +10,7 @@ Nguyên tắc viết thay: thay tính từ bằng **số đo, tên riêng, việ
 | Không cụm trong `cum-sao-rong/` | có |
 | Tiêu đề cụ thể: có đối tượng, con số hoặc hành động. Ví dụ "Học IELTS 6.5 trong 24 tuần", không "Nâng tầm tiếng Anh" | mắt |
 | Đủ dấu tiếng Việt ở chữ hiển thị, `<title>`, meta, `alt` | có (title, meta) |
-| Font có subset vietnamese (xem `web-layout-palette-type/references/typography.md`) | mắt |
+| Font có subset vietnamese (xem mục Chữ trong `frontend-themes/CLAUDE.md`) | mắt |
 | `text-wrap: balance` cho h1-h3 | mắt |
 | Hạn chế câu ba vế song song ("nhanh, gọn, chuẩn"); tối đa 1 lần mỗi trang | mắt |
 | Không dấu `–` `—`; dùng `-` | có (build cũng chặn) |

@@ -8,7 +8,7 @@
 ## Cấu trúc tối thiểu
 
 | Trang | Ghi chú |
-|---|---|
+| --- | --- |
 | Trang chủ | Danh mục chính, sản phẩm nổi bật, khuyến mãi thật (nếu có) |
 | Danh mục | Lưới sản phẩm, lọc (giá, thuộc tính), sắp xếp, trạng thái "không có kết quả" |
 | Chi tiết sản phẩm | Ảnh, giá, biến thể, thông số, tình trạng hàng, thêm giỏ, sản phẩm liên quan |
@@ -18,6 +18,8 @@
 | Liên hệ, cửa hàng | Hotline, địa chỉ, giờ mở cửa |
 | 404 | Gợi ý danh mục |
 
+File bắt buộc ở gốc dự án (mọi loại site): `.mcp.json` chuẩn `templates/mcp.template.json`, tạo bằng `ensure-mcp.js` (skill `web-project-scaffold`).
+
 ## Hành vi bắt buộc
 
 - Giá, tồn kho, biến thể lấy từ `src/data/products.js`; trang chi tiết sinh bằng template.
@@ -26,6 +28,19 @@
   Không dùng huy hiệu "chính hãng", "100% an toàn" khi không có cơ sở.
 - Thanh mua dính đáy ở trang chi tiết trên mobile.
 - Giỏ hàng trống có lời dẫn về danh mục.
+
+## Khối UI toàn cục
+
+- **Thanh liên hệ nổi** góc phải dưới: Facebook, Zalo, hotline. Link thật; chưa có thì ẩn nút và ghi `[CẦN DỮ LIỆU THẬT]`. Mobile đặt trên thanh mua dính đáy, không che giá/nút mua.
+- **Nhận thông báo sản phẩm**: panel hover/focus ở góc phải dưới, thêm bản inline ở footer và trang sản phẩm. Có email + checkbox đồng ý (mặc định không tick) + link chính sách. Trigger sau 40-60% hoặc 8-12 giây, 1 lần/phiên. Endpoint thật hoặc mô phỏng có ghi README.
+- Không hứa giảm giá, quà tặng, số lượng có hạn khi chưa có dữ liệu thật; không tự thêm email vào danh sách khi chưa tick đồng ý.
+
+## Kiểm tra trước khi báo xong
+
+- Thêm/xóa/sửa số lượng giỏ, giỏ trống, `localStorage` bị chặn vẫn chạy.
+- Lọc, sắp xếp, trạng thái không có kết quả; đồng bộ URL nếu có.
+- Thanh mua dính đáy mobile không che thanh liên hệ hoặc panel email.
+- Thanh toán mô phỏng ghi rõ trong README; không hiện "đã thanh toán" khi chưa có cổng thật.
 
 ## Giới hạn của stack hiện tại (phải ghi trong README)
 
